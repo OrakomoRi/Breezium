@@ -36,7 +36,7 @@ class BreeziumSelect {
 			const optionEl = document.createElement('div');
 			optionEl.classList.add('breezium-option');
 			optionEl.textContent = option.name;
-			optionEl.dataset.value = option.code;
+			optionEl.dataset.value = option.value;
 
 			optionEl.addEventListener('click', () => this.selectOption(option));
 
@@ -57,9 +57,9 @@ class BreeziumSelect {
 	 * @param {object} option The selected option {name, value}
 	 */
 	selectOption(option) {
-		this.callback(option.code);
+		this.callback(option.value);
 		this.selected.textContent = option.name;
-		this.selected.dataset.value = option.code;
+		this.selected.dataset.value = option.value;
 		this.container.classList.remove('show');
 	}
 	/**

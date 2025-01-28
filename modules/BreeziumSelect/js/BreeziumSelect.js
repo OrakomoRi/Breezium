@@ -54,7 +54,6 @@ class BreeziumSelect {
 	 * @param {object} option The selected option {name, value}
 	 */
 	selectOption(option) {
-		console.log(option);
 		this.callback(option.code);
 		this.selected.textContent = option.name;
 		this.container.classList.remove('show');

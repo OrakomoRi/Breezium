@@ -5,12 +5,14 @@
  * @param {string|null} defaultValue Default value displayed before selecting an option
  */
 class BreeziumSelect {
-	constructor(options, callback, defaultValue = null) {
+	constructor(options, callback, defaultOption = null) {
 		this.container = document.createElement('div');
 		this.container.classList.add('breezium-select');
+
 		this.options = options;
 		this.callback = callback;
-		this.defaultValue = defaultValue || options[0]?.name || 'Select Option';
+		
+		this.defaultOption = defaultOption || options[0] || { name: 'Select Option', value: '' };
 
 		this.selected = null;
 		this.optionsContainer = null;
@@ -24,7 +26,8 @@ class BreeziumSelect {
 	init() {
 		this.selected = document.createElement('div');
 		this.selected.classList.add('breezium-selected');
-		this.selected.textContent = this.defaultValue;
+		this.selected.textContent = this.defaultOption.name;
+		this.selected.dataset.value = this.defaultOption.value;
 
 		this.optionsContainer = document.createElement('div');
 		this.optionsContainer.classList.add('breezium-options');
@@ -56,6 +59,7 @@ class BreeziumSelect {
 	selectOption(option) {
 		this.callback(option.code);
 		this.selected.textContent = option.name;
+		this.selected.dataset.value = option.code;
 		this.container.classList.remove('show');
 	}
 	/**

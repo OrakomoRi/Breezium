@@ -52,6 +52,7 @@
 	top: 100%;
 	left: 0;
 	width: 100%;
+	backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
 	border-radius: var(--breezium-border-radius, .25rem);
 	border: var(--breezium-border-width, .1rem) solid var(--breezium-border-color, rgba(255, 255, 255, .25));
 	display: none;

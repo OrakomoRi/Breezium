@@ -41,7 +41,8 @@
 	height: var(--breezium-select-option-height, 2.5rem);
 	padding: var(--breezium-padding, .5rem 1rem);
 	background-color: var(--breezium-bg-color, rgba(30, 30, 30, .25));
-	backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	-webkit-backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	        backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
 	border-radius: var(--breezium-border-radius, .25rem);
 	border: var(--breezium-border-width, .1rem) solid var(--breezium-border-color, rgba(255, 255, 255, .25));
 	text-align: center;
@@ -64,7 +65,8 @@
 	left: 0;
 	width: 100%;
 	max-height: var(--breezium-select-options-max-height, 10rem);
-	backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	-webkit-backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	        backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
 	border-radius: var(--breezium-border-radius, .25rem);
 	border: var(--breezium-border-width, .1rem) solid var(--breezium-border-color, rgba(255, 255, 255, .25));
 	display: none;
@@ -111,6 +113,7 @@
 
 .breezium-select .breezium-options::-webkit-scrollbar-thumb {
 	background: var(--breezium-select-scroll-thumb-background, rgba(255, 255, 255, .3));
+	-webkit-transition: background var(--breezium-background-hover-transition-time, .2s) ease;
 	transition: background var(--breezium-background-hover-transition-time, .2s) ease;
 }
 

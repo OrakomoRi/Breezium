@@ -11,7 +11,7 @@ class BreeziumSelect {
 
 		this.options = options;
 		this.callback = callback;
-		
+
 		this.defaultOption = defaultOption || options[0] || { name: 'Select Option', value: '' };
 
 		this.selected = null;
@@ -31,6 +31,8 @@ class BreeziumSelect {
 
 		this.optionsContainer = document.createElement('div');
 		this.optionsContainer.classList.add('breezium-options');
+
+		let maxOptionWidth = 0;
 
 		for (const option of this.options) {
 			const optionEl = document.createElement('div');
@@ -62,11 +64,47 @@ class BreeziumSelect {
 		this.selected.dataset.value = option.value;
 		this.container.classList.remove('show');
 	}
+
 	/**
 	 * Toggles the visibility of the options list
 	 */
 	toggleOptions() {
 		this.container.classList.toggle('show');
+
+		if (this.container.classList.contains('show')) {
+			const rect = this.container.getBoundingClientRect();
+			const viewportHeight = window.innerHeight;
+			const spaceBelow = viewportHeight - rect.bottom;
+
+			const remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
+			const spaceBelowInRem = (spaceBelow - 10) / remInPixels;
+
+			// Get the value of CSS variable --breezium-select-options-max-height
+			const computedStyle = getComputedStyle(this.optionsContainer);
+			let maxCssHeight = computedStyle.getPropertyValue('--breezium-select-options-max-height').trim();
+
+			// Default value (if the variable does not exist)
+			let maxCssHeightRem = 10;
+
+			if (maxCssHeight) {
+				if (maxCssHeight.endsWith('rem')) {
+					maxCssHeightRem = parseFloat(maxCssHeight);
+				} else if (maxCssHeight.endsWith('em')) {
+					// Get the font size of the container if it is different from the root
+					const emInPixels = parseFloat(getComputedStyle(this.optionsContainer).fontSize);
+					maxCssHeightRem = parseFloat(maxCssHeight) * (emInPixels / remInPixels); // em → rem
+				} else if (maxCssHeight.endsWith('px')) {
+					maxCssHeightRem = parseFloat(maxCssHeight) / remInPixels; // px → rem
+				} else if (maxCssHeight.endsWith('%')) {
+					const percent = parseFloat(maxCssHeight) / 100;
+					maxCssHeightRem = (viewportHeight * percent) / remInPixels; // % → rem
+				}
+			}
+
+			// Total height (takes into account available space)
+			const maxHeightInRem = Math.min(spaceBelowInRem, maxCssHeightRem);
+			this.optionsContainer.style.maxHeight = `${maxHeightInRem}rem`;
+		}
 	}
 
 	/**

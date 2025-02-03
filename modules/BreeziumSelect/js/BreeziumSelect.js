@@ -32,8 +32,6 @@ class BreeziumSelect {
 		this.optionsContainer = document.createElement('div');
 		this.optionsContainer.classList.add('breezium-options');
 
-		let maxOptionWidth = 0;
-
 		for (const option of this.options) {
 			const optionEl = document.createElement('div');
 			optionEl.classList.add('breezium-option');

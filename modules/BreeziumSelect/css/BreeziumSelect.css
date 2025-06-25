@@ -34,6 +34,7 @@
 .breezium-select {
 	position: relative;
 	cursor: pointer;
+	width: fit-content;
 }
 
 .breezium-select .breezium-selected {
@@ -42,7 +43,7 @@
 	padding: var(--breezium-padding, .5rem 1rem);
 	background-color: var(--breezium-bg-color, rgba(30, 30, 30, .25));
 	-webkit-backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
-	        backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
 	border-radius: var(--breezium-border-radius, .25rem);
 	border: var(--breezium-border-width, .1rem) solid var(--breezium-border-color, rgba(255, 255, 255, .25));
 	text-align: center;
@@ -66,7 +67,7 @@
 	width: 100%;
 	max-height: var(--breezium-select-options-max-height, 10rem);
 	-webkit-backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
-	        backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
+	backdrop-filter: var(--breezium-backdrop-filter, blur(.25rem));
 	border-radius: var(--breezium-border-radius, .25rem);
 	border: var(--breezium-border-width, .1rem) solid var(--breezium-border-color, rgba(255, 255, 255, .25));
 	display: none;
@@ -94,6 +95,7 @@
 	cursor: pointer;
 	color: var(--breezium-text-color, #fff);
 	white-space: nowrap;
+	font-size: var(--breezium-font-size, 1rem);
 	text-overflow: ellipsis;
 	transition: background-color var(--breezium-background-hover-transition-time, .2s) ease;
 }
